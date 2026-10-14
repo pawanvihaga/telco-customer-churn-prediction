@@ -7,3 +7,4 @@ matplotlib
 seaborn
 joblib
 reportlab
+googletrans==4.0.0-rc1
