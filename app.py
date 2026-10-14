@@ -4,20 +4,6 @@ import numpy as np
 import joblib
 import matplotlib.pyplot as plt
 import seaborn as sns
-from googletrans import Translator
-
-translator = Translator()
-
-def translate_text(text):
-    try:
-        if text:
-            translated = translator.translate(text, src='si', dest='en')
-            return translated.text
-    except Exception as e:
-        return text
-    return text
-# ----------------- LOGIN SYSTEM -----------------
-# Session state එකේ login status එක තබා ගැනීම
 if 'logged_in' not in st.session_state:
     st.session_state['logged_in'] = False
 
