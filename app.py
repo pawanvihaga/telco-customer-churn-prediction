@@ -7,18 +7,20 @@ import seaborn as sns
 if 'logged_in' not in st.session_state:
     st.session_state['logged_in'] = False
 
-def login():
+    def login():
     st.title("🔐 Login to Churn Prediction Dashboard")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
     
-    # එකකට වඩා වැඩි Users ලා ලැයිස්තුවක් මෙතැනට දෙන්න පුළුවන්
-    valid_users = {
-        "admin": "1234",
-        "pawan": "cit-24-01-0459",
-        "shalitha": "pass123",
-        "buddhisha": "pass456"
-    }
+    if st.button("Login"):
+        # Check if both username and password are provided (not empty)
+        if username.strip() and password.strip():
+            st.session_state['logged_in'] = True
+            st.session_state['current_user'] = username  # Save current logged-in user name
+            st.success(f"Successfully logged in, {username}!")
+            st.rerun()
+        else:
+            st.error("Please enter both Username and Password!")
     
     if st.button("Login"):
         if username in valid_users and valid_users[username] == password:
