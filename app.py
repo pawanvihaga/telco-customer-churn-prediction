@@ -132,10 +132,25 @@ def load_data():
 
 df_viz = load_data()
 
-# 1. Churn Count Bar Chart (Streamlit Built-in Chart)
-st.write("#### Total Churn vs Non-Churn Customers")
-churn_counts = df_viz['Churn'].value_counts()
-st.bar_chart(churn_counts)
+# 1. Churn Count Bar Chart (Advanced Seaborn Plot)
+st.write("### Total Churn vs Non-Churn Customers")
+
+fig, ax = plt.subplots(figsize=(8, 4))
+fig.patch.set_facecolor('#0E1117')
+ax.set_facecolor('#0E1117')
+
+# 'df_viz' DataFrame එක පාවිච්චි කරමින් Count Plot එක ඇඳීම (කොළ සහ රතු වර්ණවලින්)
+sns.countplot(data=df_viz, x='Churn', palette=['#2ECC71', '#E74C3C'], ax=ax)
+
+ax.set_xlabel("Churn Status", color='white', fontsize=11)
+ax.set_ylabel("Customer Count", color='white', fontsize=11)
+
+# අංක සහ මායිම් (Axis & Borders) සුදු පැහැයට හැරවීම
+ax.tick_params(colors='white', which='both')
+for spine in ax.spines.values():
+    spine.set_edgecolor('#555555')
+
+st.pyplot(fig)
 
 # 2. Monthly Charges vs Churn (Matplotlib & Seaborn)
 st.write("#### Monthly Charges Distribution by Churn Status")
