@@ -46,8 +46,8 @@ if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
     st.sidebar.success("Dataset successfully uploaded!")
 else:
-    # පරිශීලකයා ගොනුවක් ලබා දී නැත්නම්, පෙරනිමි (Default) දත්ත ගොනුව පාවිච්චි කිරීම
-    df = pd.read_csv('Telco-Customer-Churn.csv')  # ඔබේ ඩිෆෝල්ට් ෆයිල් නම මෙහි යොදන්න
+    st.warning("⚠️ Please upload a CSV dataset file from the sidebar to proceed.")
+    st.stop()
 
 st.set_page_config(page_title="Customer Churn Prediction Dashboard", layout="wide")
 
