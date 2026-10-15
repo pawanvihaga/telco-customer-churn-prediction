@@ -6,8 +6,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 if 'logged_in' not in st.session_state:
     st.session_state['logged_in'] = False
-
-  def login():
+def login():
     st.title("🔐 Login to Churn Prediction Dashboard")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
