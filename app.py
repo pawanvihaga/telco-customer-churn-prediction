@@ -24,19 +24,6 @@ if not st.session_state['logged_in']:
     login()
     st.stop()  # Hides the dashboard below until logged in
 
-# -------------------- MAIN DASHBOARD (LOGGED IN) --------------------
-st.sidebar.write(f"👤 Logged in as: **{st.session_state.get('current_user', 'User')}**")
-if st.sidebar.button("Logout"):
-    st.session_state['logged_in'] = False
-    st.rerun()
-
-# Load saved model, scaler, and encoders
-model = joblib.load('churn_model.pkl')
-    
-  
-    
-  
-
 # Login වී නැත්නම් Login Form එක පෙන්වීම
 if not st.session_state['logged_in']:
     login()
