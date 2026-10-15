@@ -11,7 +11,6 @@ if 'logged_in' not in st.session_state:
     st.title("🔐 Login to Churn Prediction Dashboard")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
-    
     if st.button("Login"):
         # Check if both username and password are provided (not empty)
         if username.strip() and password.strip():
@@ -21,6 +20,19 @@ if 'logged_in' not in st.session_state:
             st.rerun()
         else:
             st.error("Please enter both Username and Password!")
+            # Check if user is logged in
+if not st.session_state['logged_in']:
+    login()
+    st.stop()  # Hides the dashboard below until logged in
+
+# -------------------- MAIN DASHBOARD (LOGGED IN) --------------------
+st.sidebar.write(f"👤 Logged in as: **{st.session_state.get('current_user', 'User')}**")
+if st.sidebar.button("Logout"):
+    st.session_state['logged_in'] = False
+    st.rerun()
+
+# Load saved model, scaler, and encoders
+model = joblib.load('churn_model.pkl')
     
   
     
