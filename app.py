@@ -45,9 +45,14 @@ if uploaded_file is not None:
     # පරිශීලකයා ගොනුවක් Upload කළ විට එය භාවිත කිරීම
     df = pd.read_csv(uploaded_file)
     st.sidebar.success("Dataset successfully uploaded!")
+if uploaded_file is not None:
+    # පරිශීලකයා ගොනුවක් Upload කළ විට එය භාවිත කිරීම
+    df = pd.read_csv(uploaded_file)
+    st.sidebar.success("Dataset successfully uploaded!")
 else:
-    # පරිශීලකයා ගොනුවක් ලබා දී නැත්නම්, GitHub එකේ ඇති පෙරනිමි (Default) ගොනුව ස්වයංක්‍රීයව භාවිත කිරීම
-    df = pd.read_csv('Telco-Customer-Churn.csv')
+    # ගොනුවක් ලබා දී නැත්නම්, අනතුරු අඟවා ඇප් එක නවතා තැබීම
+    st.warning("⚠️ Please upload a CSV dataset file from the sidebar to proceed.")
+    st.stop()
 
 st.set_page_config(page_title="Customer Churn Prediction Dashboard", layout="wide")
 
