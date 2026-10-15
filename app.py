@@ -164,11 +164,41 @@ for spine in ax.spines.values():
 
 st.pyplot(fig)
 
-# 2. Monthly Charges vs Churn (Matplotlib & Seaborn)
+# 2. Monthly Charges vs Churn (Advanced Seaborn Histogram)
 st.write("#### Monthly Charges Distribution by Churn Status")
-fig, ax = plt.subplots(figsize=(10, 4))
-sns.histplot(data=df_viz, x='MonthlyCharges', hue='Churn', kde=True, palette='Set2', ax=ax)
-ax.set_title("Monthly Charges vs Churn")
+
+fig, ax = plt.subplots(figsize=(10, 6))
+fig.patch.set_facecolor('#0E1117')
+ax.set_facecolor('#0E1117')
+
+sns.histplot(
+    data=df_viz, 
+    x='MonthlyCharges', 
+    hue='Churn', 
+    element="bars", 
+    stat="count", 
+    kde=True, 
+    palette={'No': '#1E88E5', 'Yes': '#D81B60'}, 
+    alpha=0.5, 
+    ax=ax
+)
+
+ax.set_title('Distribution of Monthly Charges by Churn Status', color='white', fontsize=16, pad=20)
+ax.set_xlabel('Monthly Charges ($)', color='white', fontsize=12)
+ax.set_ylabel('Count of Customers', color='white', fontsize=12)
+
+legend = ax.legend(title='Customer Churn', loc='upper right', bbox_to_anchor=(1, 1.15), frameon=False)
+plt.setp(legend.get_title(), color='white', fontsize=12)
+for text in legend.get_texts():
+    text.set_color('white')
+    text.set_fontsize(11)
+
+ax.tick_params(axis='x', colors='white', labelsize=11)
+ax.tick_params(axis='y', colors='white', labelsize=11)
+
+for spine in ax.spines.values():
+    spine.set_edgecolor('#555555')
+
 st.pyplot(fig)
 # ----------------- BULK PREDICTION (CSV FILE UPLOAD) -----------------
 st.markdown("---")
