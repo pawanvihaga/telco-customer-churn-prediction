@@ -146,7 +146,7 @@ st.pyplot(fig)
 # ----------------- BULK PREDICTION (CSV FILE UPLOAD) -----------------
 st.markdown("---")
 st.subheader("📁 Bulk Customer Churn Prediction (CSV Upload)")
-st.write("Customers ලා කිහිප දෙනෙකුගේ විස්තර සහිත CSV File එකක් Upload කර එකවර Predictions ලබාගන්න.")
+st.write("Upload a CSV file containing details of multiple customers to obtain batch predictions at once.")
 
 uploaded_file = st.file_uploader("Upload your CSV file", type=["csv"])
 
