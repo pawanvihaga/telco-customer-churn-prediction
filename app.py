@@ -22,13 +22,7 @@ if 'logged_in' not in st.session_state:
         else:
             st.error("Please enter both Username and Password!")
     
-    if st.button("Login"):
-        if username in valid_users and valid_users[username] == password:
-            st.session_state['logged_in'] = True
-            st.success(f"සාර්ථකව Login වුණා, {username}!")
-            st.rerun()
-        else:
-            st.error("Username හෝ Password වැරදියයි!")
+  
 
 # Login වී නැත්නම් Login Form එක පෙන්වීම
 if not st.session_state['logged_in']:
