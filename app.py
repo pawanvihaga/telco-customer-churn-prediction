@@ -38,6 +38,16 @@ if st.sidebar.button("Logout"):
 model = joblib.load('churn_model.pkl')
 scaler = joblib.load('scaler.pkl')
 encoders = joblib.load('encoders.pkl')
+st.sidebar.header("📁 Upload Dataset")
+uploaded_file = st.sidebar.file_uploader("Upload your CSV file", type=["csv"])
+
+if uploaded_file is not None:
+    # පරිශීලකයා දත්ත ගොනුවක් දුන් විට එය කියවීම
+    df = pd.read_csv(uploaded_file)
+    st.sidebar.success("Dataset successfully uploaded!")
+else:
+    # පරිශීලකයා ගොනුවක් ලබා දී නැත්නම්, පෙරනිමි (Default) දත්ත ගොනුව පාවිච්චි කිරීම
+    df = pd.read_csv('Telco-Customer-Churn.csv')  # ඔබේ ඩිෆෝල්ට් ෆයිල් නම මෙහි යොදන්න
 
 st.set_page_config(page_title="Customer Churn Prediction Dashboard", layout="wide")
 
