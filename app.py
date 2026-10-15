@@ -8,18 +8,25 @@ if 'logged_in' not in st.session_state:
     st.session_state['logged_in'] = False
 
 def login():
-    st.title("🔒 Login to Churn Prediction Dashboard")
+    st.title("🔐 Login to Churn Prediction Dashboard")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
     
+    # එකකට වඩා වැඩි Users ලා ලැයිස්තුවක් මෙතැනට දෙන්න පුළුවන්
+    valid_users = {
+        "admin": "1234",
+        "pawan": "cit-24-01-0459",
+        "shalitha": "pass123",
+        "buddhisha": "pass456"
+    }
+    
     if st.button("Login"):
-        # මෙතනට කැමති Username සහ Password එකක් දෙන්න
-        if username == "admin" and password == "1234":
+        if username in valid_users and valid_users[username] == password:
             st.session_state['logged_in'] = True
-            st.success("සාර්ථකව Login වුණා!")
+            st.success(f"සාර්ථකව Login වුණා, {username}!")
             st.rerun()
         else:
-            st.error("Username හෝ Password වැරදියි!")
+            st.error("Username හෝ Password වැරදියයි!")
 
 # Login වී නැත්නම් Login Form එක පෙන්වීම
 if not st.session_state['logged_in']:
